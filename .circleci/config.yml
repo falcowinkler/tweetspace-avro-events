@@ -23,11 +23,11 @@ jobs:
           - v1-dependencies-{{ checksum "build.gradle" }}
           - v1-dependencies-
 
-      - run: gradle dependencies
+      - run: ./gradlew dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: gradle generatePomFileForMavenJavaPublication artifactoryPublish
+      - run: ./gradlew generatePomFileForMavenJavaPublication artifactoryPublish
