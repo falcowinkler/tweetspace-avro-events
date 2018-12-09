@@ -1,0 +1,29 @@
+@namespace("de.haw.tweetspace.avro")
+/**
+ Messages that refer to the customer and his account directly.
+*/
+protocol CustomerProtocol {
+  record CustomerRegistration {
+    timestamp_ms timestamp;
+    long id;
+    string name;
+    boolean verified = false;
+    /** ISO 639-1 code of the users language */
+    union { null, string } lang = null;
+    union { null, string } description = null;
+  }
+  record CustomerDeregistration {
+    timestamp_ms timestamp;
+    string id;
+  }
+  record CustomerTweet {
+    timestamp_ms timestamp;
+    long id;
+    string text;
+    timestamp_ms created_at;
+    string source;
+    union { null, long } in_reply_to_status_id;
+    union { null, long } in_reply_to_user_id;
+    union { null, string } lang;
+  }
+}
