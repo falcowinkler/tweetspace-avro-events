@@ -12,6 +12,12 @@ jobs:
 
     steps:
       - checkout
+      - run:
+        command: |
+          rm ~/.gradle/gradle.properties
+          echo "artifactory_user=$ARTIFACTORY_USER" >> ~/.gradle/gradle.properties
+          echo "artifactory_password=$ARTIFACTORY_PASS" >> ~/.gradle/gradle.properties
+          echo "artifactory_contextUrl=$ARTIFACTORY_CONTEXT_URL" >> ~/.gradle/gradle.properties
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "build.gradle" }}
