@@ -14,7 +14,6 @@ jobs:
       - checkout
       - run:
           command: |
-            rm -f ~/.gradle/gradle.properties
             echo "artifactory_user=$ARTIFACTORY_USER" >> ~/.gradle/gradle.properties
             echo "artifactory_password=$ARTIFACTORY_PASS" >> ~/.gradle/gradle.properties
             echo "artifactory_contextUrl=$ARTIFACTORY_CONTEXT_URL" >> ~/.gradle/gradle.properties
