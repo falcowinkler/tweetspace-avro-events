@@ -14,10 +14,7 @@ jobs:
       - checkout
       - run:
           command: |
-            mkdir -p ~/.gradle
-            echo "artifactory_user=$ARTIFACTORY_USER" >> ~/.gradle/gradle.properties
-            echo "artifactory_password=$ARTIFACTORY_PASS" >> ~/.gradle/gradle.properties
-            echo "artifactory_contextUrl=$ARTIFACTORY_CONTEXT_URL" >> ~/.gradle/gradle.properties
+            sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "build.gradle" }}
@@ -28,6 +25,10 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
+            - /usr/local/bin
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: ./gradlew generatePomFileForMavenJavaPublication artifactoryPublish
+      - run:
+          command: |
+            ./gradlew build generatePomFileForMavenJavaPublication
+            boot push

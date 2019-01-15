@@ -3,7 +3,7 @@ apply plugin: 'java-library'
 apply plugin: 'idea'
 
 group = 'de.haw.tweetspace'
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 sourceCompatibility = 1.8
 
@@ -17,25 +17,15 @@ buildscript {
     }
     dependencies {
         classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
-        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:3.0.1"
     }
 }
 
 apply plugin: 'maven-publish'
-apply plugin: "com.jfrog.artifactory"
 apply plugin: "com.commercehub.gradle.plugin.avro"
 
 repositories {
     jcenter()
     mavenLocal()
-    maven {
-        url 'http://falcowinkler.de:8081/artifactory/plugins-release'
-        credentials {
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
-        name = "maven-main-cache"
-    }
 }
 
 
@@ -66,18 +56,4 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar
     archives javadocJar
-}
-
-artifactory {
-    contextUrl = "${artifactory_contextUrl}"
-    publish {
-        repository {
-            repoKey = 'libs-snapshot-local'
-            username = "${artifactory_user}"
-            password = "${artifactory_password}"
-        }
-        defaults {
-            publications ('mavenJava')
-        }
-    }
 }
