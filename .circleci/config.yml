@@ -17,15 +17,13 @@ jobs:
             sudo bash -c "cd /usr/local/bin && curl -fsSLo boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh && chmod 755 boot"
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          - v1-dependencies-
+          - v1-dependencies-2
 
       - run: ./gradlew dependencies
 
       - save_cache:
           paths:
             - ~/.gradle
-            - /usr/local/bin
             - ~/.m2
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
