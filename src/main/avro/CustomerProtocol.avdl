@@ -4,8 +4,8 @@
 */
 protocol CustomerProtocol {
   record CustomerRegistration {
+    long twitter_user_id;
     timestamp_ms timestamp;
-    long id;
     string name;
     boolean verified = false;
     /** ISO 639-1 code of the users language */
@@ -13,17 +13,18 @@ protocol CustomerProtocol {
     union { null, string } description = null;
   }
   record CustomerDeregistration {
+    long twitter_user_id;
     timestamp_ms timestamp;
-    string id;
   }
   record CustomerTweet {
+    long twitter_user_id;
     timestamp_ms timestamp;
-    long id;
+    long tweet_id;
     string text;
     timestamp_ms created_at;
     string source;
     union { null, long } in_reply_to_status_id;
-    union { null, long } in_reply_to_user_id;
+    union { null, long } in_reply_to_twitter_user_id;
     union { null, string } lang;
   }
 }
