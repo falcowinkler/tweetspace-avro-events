@@ -3,6 +3,6 @@
                                      :password (System/getenv "CLOJARS_PASSWORD")}]])
 
 (task-options!
-  push {:file "build/libs/avro-events-1.0.jar"
+  push {:file "build/libs/avro-events-1.0.1.jar"
         :pom  "build/publications/mavenJava/pom-default.xml"
         :repo "clojars"})
