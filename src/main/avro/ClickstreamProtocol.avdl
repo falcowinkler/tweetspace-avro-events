@@ -1,0 +1,13 @@
+@namespace("de.haw.tweetspace.avro")
+/**
+ Messages that refer to customer tracking.
+ These messages will be used to produce some load on the cluster, they don't
+ really have to make sense
+*/
+protocol ClickstreamProtocol {
+  record CustomerInteraction {
+    string object_id;
+    long twitter_user_id;
+    timestamp_ms timestam;
+  }
+}

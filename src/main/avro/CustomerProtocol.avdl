@@ -27,4 +27,15 @@ protocol CustomerProtocol {
     union { null, long } in_reply_to_twitter_user_id;
     union { null, string } lang;
   }
+  record CustomerFriendRequest {
+    long requester_twitter_user_id;
+    long requested_twitter_user_id;
+    timestamp_ms timestamp;
+  }
+  record CustomerFriendRequestReply {
+    long requester_twitter_user_id;
+    long requested_twitter_user_id;
+    boolean accepted;
+    timestamp_ms timestamp;
+  }
 }

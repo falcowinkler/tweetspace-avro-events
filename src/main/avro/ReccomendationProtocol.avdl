@@ -1,0 +1,12 @@
+@namespace("de.haw.tweetspace.avro")
+/**
+ Messages that refer to the contact reccomendation engine.
+*/
+protocol ReccomendationProtocol {
+  record FriendReccomendation{
+    long first_twitter_user_id;
+    long second_twitter_user_id;
+    float match_percentage;
+    timestamp_ms timestamp;
+  }
+}
